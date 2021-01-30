@@ -8,21 +8,17 @@
                 >
             </b-navbar-item>
         </template>
+        
         <template #start>
-            <b-navbar-item href="#">
+            <b-navbar-item tag="router-link" :to="{ path: '/' }">
                 Home
             </b-navbar-item>
-            <b-navbar-item href="#">
-                Documentation
+            <b-navbar-item tag="router-link" :to="{ path: '/profile/user2432' }">
+                Profile
             </b-navbar-item>
-            <b-navbar-dropdown label="Info">
-                <b-navbar-item href="#">
-                    About
-                </b-navbar-item>
-                <b-navbar-item href="#">
-                    Contact
-                </b-navbar-item>
-            </b-navbar-dropdown>
+            <b-navbar-item  tag="router-link" :to="{ path: '/study/set2343' }">
+                Study
+            </b-navbar-item>
         </template>
 
         <template #end>
