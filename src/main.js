@@ -25,7 +25,7 @@ new Vue({
   router,
   data() {
     return {
-      authToken: null
+      currentToken: null
     }
   },
   methods: {
@@ -55,7 +55,7 @@ new Vue({
         console.log(row)
           return decodeURIComponent(row.split('=')[1])
       } else {
-          return false
+          return this.currentToken || false
       }
     },
   },

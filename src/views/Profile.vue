@@ -11,6 +11,19 @@
       </div>
     </div>
     <section class="cards-wrapper">
+      <h3 class="title is-3 has-text-left">Today's Cards</h3>
+      <div class="columns cards-holder">
+        <router-link class="hoverable column is-4" :to="`/study/today`" v-for="set in sets" :key="set._id">
+        <box-3-d  :strength="10" >
+          <div class="content-wrapper">
+            <h4 class="title is-h4">{{ set.title }}</h4>
+            <p class="paragraph description">{{ set.description }}</p>
+          </div>
+        </box-3-d>
+        </router-link>
+      </div>
+    </section>
+    <section class="cards-wrapper">
       <h3 class="title is-3 has-text-left">My sets</h3>
       <div class="columns cards-holder">
         <router-link class="hoverable column is-4" :to="`/study/${set._id}`" v-for="set in sets" :key="set._id">
@@ -60,8 +73,8 @@ export default {
         description: 'A fun set about Mandarin',
         _id: '6016d6e6ce16b9b1337ef314'
       }],
-      username: 'Edmund Zhi',
-      bio: 'I\'m a 19 year old Molecular Biology major at UCLA.'
+      username: 'Username',
+      bio: 'Bio'
     }
   },
   mounted() {
@@ -69,6 +82,7 @@ export default {
     fetch(`/api/user/get/me`, this.$root.getRequestOptions('GET'))
       .then(res => res.json())
       .then(json => {
+        console.log(json)
         this.username = json.username || 'User'
         this.bio = json.bio || 'I am a user'
         this.sets = json.sets || [] // may have to doubly parse 

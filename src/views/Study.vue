@@ -160,8 +160,12 @@ export default {
         this.side = this.side === 'front' ? 'back' : 'front'
       },
       studied(correct) {
+        console.log(correct)
         let cardId = this.currentCard.id
         this.loading = true;
+        if(correct) {
+           this.correctCards++
+        }else {this.incorrectCards++}
         fetch(`/api/flashcard/study/${this.setId}/${cardId}`, this.$root.getRequestOptions('POST', {
           timeElapsed: Date.now() - this.timeElapsed,
           correct

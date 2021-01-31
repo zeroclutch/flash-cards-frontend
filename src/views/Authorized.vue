@@ -15,8 +15,11 @@ export default {
         let cookie = `token=${encodeURIComponent(accessToken)}; max-age=${maxAge}; `
         document.cookie = cookie
 
+        this.$root.currentToken = accessToken
+
         fetch('/api/user/create/me', this.$root.getRequestOptions('POST', {
-            sets: []
+            user: 'User',
+            bio: 'bio'
         }))
 
         window.location = decodeURIComponent(fragment.get('state') || '%2F')
