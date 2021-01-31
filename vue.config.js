@@ -3,7 +3,7 @@ module.exports =
   devServer: {
     proxy: {
         '^/api': {
-            target: 'http://localhost:5000',
+            target: 'https://flashme-backend.herokuapp.com',
             changeOrigin: true,
             secure: false,
         },
