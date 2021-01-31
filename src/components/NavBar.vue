@@ -43,7 +43,7 @@ export default {
       href() {
           let href
           if(!this.authorized) {
-          let redirect_uri = `http://127.0.0.1:8080/authorized`
+          let redirect_uri = `https://flashme.netlify.app/authorized`
           href = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=591191830884-iesl69sb9n8hukk9jldkhjjbdmgf2hpi.apps.googleusercontent.com&redirect_uri=${encodeURIComponent(redirect_uri)}&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&state=${this.$route.path}`
           } else {
               this.$root.logout()
