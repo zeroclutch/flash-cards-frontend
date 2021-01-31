@@ -9,6 +9,9 @@ module.exports =
         },
     }
   },
+  publicPath: process.env.NODE_ENV === 'production'
+  ? '/flash-me/'
+  : '/',
   // Make variables available in SASS for every components
   css: {
     loaderOptions: {
