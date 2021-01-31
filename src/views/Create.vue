@@ -20,7 +20,7 @@
         <FlashCardEditor v-on:delete="deleteCard"  v-on:edit="editCard" v-on:add="addCard" v-on:submit="cardsEditFinished" :cardIndex="cardIndex" v-else-if="activeStep == 1" :set-info="setInfo"/>
         <div class="success" v-else-if="creationSuccess === true">
             <!-- if success, display a nice message and redirect user to profile -->
-            
+            <h3 class="title has-text-primary">Go to your <a href="/profile">profile</a> to view your new set</h3>
         </div>
         <div class="error" v-else>
         </div>
@@ -109,10 +109,12 @@ export default {
             })
         },
         saveSet() {
-            return fetch('/api/sets/create/me', this.$root.getRequestParams('POST', this.setInfo))
+            this.creationSuccess = true
+            return fetch('/api/sets/create/me', this.$root.getRequestOptions('POST', this.setInfo))
             .then(res => res.json())
             .then(res => console.log(res))
-            .catch(console.error)
+            .then(() => this.activeStep = 3)
+            .catch(() => this.activeStep = 3)
         },
         goToLastCard() {
             if(this.setInfo.cards.length === 0) {

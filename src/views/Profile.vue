@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="hero is-medium is-link">
+    <div class="hero is-medium is-primary">
       <div class="hero-body">
         <p class="title">
           {{ username }}
@@ -15,8 +15,10 @@
       <div class="columns cards-holder">
         <router-link class="hoverable column is-4" :to="`/study/${set._id}`" v-for="set in sets" :key="set._id">
         <box-3-d  :strength="10" >
-          <h4 class="title is-h4">{{ set.title }}</h4>
-          <p class="paragraph description">{{ set.description }}</p>
+          <div class="content-wrapper">
+            <h4 class="title is-h4">{{ set.title }}</h4>
+            <p class="paragraph description">{{ set.description }}</p>
+          </div>
         </box-3-d>
         </router-link>
       </div>
@@ -30,6 +32,10 @@
    max-width: 750px;
    margin: 20px auto;
  }
+
+ .content-wrapper {
+   padding: 20px;
+ }
 </style>
 
 <script>
@@ -42,12 +48,20 @@ export default {
    data() {
     return {
       sets: [{
-        title: 'Title',
-        description: 'Description',
-        _id: '111111'
+        title: 'Capitals',
+        description: 'A cool set about capitals',
+        _id: '6016d6e6ce16b9b1337ef314'
+      },{
+        title: 'OChem',
+        description: 'A nice set about chemistry',
+        _id: '6016d6e6ce16b9b1337ef314'
+      },{
+        title: 'Mandarin',
+        description: 'A fun set about Mandarin',
+        _id: '6016d6e6ce16b9b1337ef314'
       }],
-      username: 'User',
-      bio: 'I am a 20 year old CS student.'
+      username: 'Edmund Zhi',
+      bio: 'I\'m a 19 year old Molecular Biology major at UCLA.'
     }
   },
   mounted() {

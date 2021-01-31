@@ -16,7 +16,7 @@
       
         <div class="footer-buttons columns">
           <div class="column is-4">
-          <b-button type="is-danger">End session</b-button>
+          <b-button tag="router-link" :to="{ path: '/' }" type="is-danger">End session</b-button>
           </div>
           
           <div class="column is-4 session-info has-text-centered">
@@ -174,6 +174,7 @@ export default {
         })
         .catch(err => {
           console.error(err)
+          this.skipForward(1)
           this.loading = false
         })
       }
@@ -190,7 +191,8 @@ export default {
         this.defaultSide = json.defaultSide || 'front'
         this.loading = false
       })
-      .catch(console.error)
+      .catch(() => this.loading = false)
+      //.catch(console.error)
       //.catch(() => window.location = '/404')
       // Fetch deck based on $route.params.id, or redirect to deck selection (profile)
       console.log(this.currentCard)

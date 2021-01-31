@@ -71,9 +71,6 @@ export default {
     bottom: calc(0% + 1rem);
     font-size: 0.75rem;
     text-align: right;
-    span {
-        display: inline;
-    }
 }
 
 .hoverable {
