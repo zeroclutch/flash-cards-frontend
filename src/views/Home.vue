@@ -32,19 +32,13 @@
 
               </div>
 
-              <div class="column is-6 content">
+              <div class="column is-12 content">
                 <h1 class="section-title">
                   Beat the forgetting curve.
                 </h1>
                 <p class="section-description">
                   FlashME uses spaced repetition to make sure that you remember everything. Congrats, you now have super powers.
                 </p>
-              </div>
-              <div class="column is-6">
-                <b-datepicker
-                    inline 
-                    :unselectable-days-of-week="[0, 6]">
-                </b-datepicker>
               </div>
 
               <div class="column is-12 content">
