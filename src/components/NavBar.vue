@@ -13,10 +13,10 @@
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
                 Home
             </b-navbar-item>
-            <b-navbar-item v-if="$root.isLoggedIn()" tag="router-link" :to="{ path: '/profile/user2432' }">
+            <b-navbar-item v-if="authorized" tag="router-link" :to="{ path: '/profile/user2432' }">
                 Profile
             </b-navbar-item>
-            <b-navbar-item v-if="$root.isLoggedIn()" tag="router-link" :to="{ path: '/study/set2343' }">
+            <b-navbar-item v-if="authorized" tag="router-link" :to="{ path: '/study/set2343' }">
                 Study
             </b-navbar-item>
         </template>
@@ -27,7 +27,7 @@
                     <b-button tag="router-link" :to="{ path: '/create' }" type="is-primary" icon="plus">
                         <strong>Create Set</strong>
                     </b-button>
-                    <b-button tag="a" href="https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?response_type=code&client_id=591191830884-iesl69sb9n8hukk9jldkhjjbdmgf2hpi.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F127.0.0.1%3A5000%2Fgoogle_login%2Fgoogle%2Fauthorized&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&state=uy2hFn1JnEGWywL4ETOzhUSnMW59GK&flowName=GeneralOAuthFlow" type="is-primary" inverted icon="plus">
+                    <b-button tag="a" :href="href" type="is-primary" inverted icon="user">
                         <strong>Log in</strong>
                     </b-button>
                 </div>
@@ -41,6 +41,17 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  computed: {
+      href() {
+          let redirect_uri = `http://127.0.0.1:8080/authorized`
+          let href = `https://accounts.google.com/o/oauth2/v2/auth?response_type=token&client_id=591191830884-iesl69sb9n8hukk9jldkhjjbdmgf2hpi.apps.googleusercontent.com&redirect_uri=${encodeURIComponent(redirect_uri)}&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&state=${this.$route.path}`
+        console.log(href)
+        return href
+      },
+      authorized() {
+          return this.$root.isLoggedIn()
+      }
   }
 }
 </script>

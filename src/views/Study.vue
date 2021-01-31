@@ -34,9 +34,9 @@
           </div>
           
           <div class="column is-4">
-          <b-button type="is-primary" :disabled="isFirstCard" v-on:click="skipForward(-1)">Previous</b-button>
+          <b-button type="is-light" v-on:click="studied(false)">I got it wrong</b-button>
           &nbsp;
-          <b-button type="is-primary" :disabled="isLastCard" v-on:click="skipForward(1)">Next</b-button>
+          <b-button type="is-primary" is-warning v-on:click="studied(true)">I got it right!</b-button>
           </div>
         </div>
       </div>
@@ -135,10 +135,10 @@ export default {
           return this.currentCard[this.side]
       },
       setId() {
-          return this.$route.params.id
+          return this.$route.params.set
       },
       remainingCards() {
-        return this.cards.length - this.index - 1
+        return this.deck.length - this.index - 1
       }
   },
   methods: {
@@ -161,25 +161,36 @@ export default {
       },
       studied(correct) {
         let cardId = this.currentCard.id
+        this.loading = true;
         fetch(`/api/flashcard/study/${this.setId}/${cardId}`, this.$root.getRequestOptions('POST', {
           timeElapsed: Date.now() - this.timeElapsed,
           correct
         }))
         .then(res => res.json())
-        .catch(console.error)
+        .then((json) => {
+          console.log(json)
+          this.skipForward(1)
+          this.loading = false
+        })
+        .catch(err => {
+          console.error(err)
+          this.loading = false
+        })
       }
   },
   mounted() {
+        console.log(this.$route.params)
       fetch(`/api/sets/get/${this.setId}`, this.$root.getRequestOptions('GET'))
       .then(res => res.json())
       .then(json => {
-        this.deck = json.deck || []
-        this.title = json.title || 'Set Title'
-        this.description = json.description || 'Description'
+        console.log(json)
+        this.deck = json.cards || []
+        this.title = json.set_name || 'Set Title'
+        this.description = json.set_desc || 'Description'
         this.defaultSide = json.defaultSide || 'front'
         this.loading = false
       })
-      .catch(() => this.loading = false)
+      .catch(console.error)
       //.catch(() => window.location = '/404')
       // Fetch deck based on $route.params.id, or redirect to deck selection (profile)
       console.log(this.currentCard)

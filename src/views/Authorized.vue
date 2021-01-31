@@ -9,10 +9,10 @@ export default {
 
     },
     mounted() {
-        const fragment = new URLSearchParams(window.location.hash.slice(1));
+        const fragment = new URLSearchParams(window.location.hash);
         const accessToken = fragment.get('access_token');
         const maxAge = fragment.get('expires_in');
-        let cookie = `access-token=${encodeURIComponent(accessToken)}; max-age=${maxAge}`
+        let cookie = `token=${encodeURIComponent(accessToken)}; max-age=${maxAge}`
         this.$root.token = accessToken
         document.cookie = cookie
         window.location

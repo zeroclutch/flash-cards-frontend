@@ -24,11 +24,6 @@ const routes = [
     props: true
   },
   {
-    path: '/study',
-    name: 'Study',
-    component: Study,
-  },
-  {
     path: '/study/:set',
     name: 'Study',
     component: Study,

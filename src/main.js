@@ -29,10 +29,10 @@ new Vue({
   },
   methods: {
     isLoggedIn() {
-      return this.token == undefined
+      return this.token != undefined && this.token != 'null'
     },
     getRequestOptions(method, body) {
-      return {
+      const options = {
         method,
         body: JSON.stringify(body),
         headers: {
@@ -40,12 +40,15 @@ new Vue({
           'Authorization': this.token
         },
       }
+      console.log(options)
+      return options
     }
   },
   computed: {
     token() {
       let row = document.cookie.split('; ').find(row => row.startsWith('token'))
       if (row) {
+        console.log(row)
           return row.split('=')[1]
       } else {
           return false

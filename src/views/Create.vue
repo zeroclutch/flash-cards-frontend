@@ -106,10 +106,7 @@ export default {
             })
         },
         saveSet() {
-            // post to server
-            // get response and populate
-            // set activeStep to 3
-            // set creationSuccess
+            fetch('/api/sets/create/me', this.$root.getRequestParams('POST', this.setInfo))
         },
         goToLastCard() {
             if(this.setInfo.cards.length === 0) {
