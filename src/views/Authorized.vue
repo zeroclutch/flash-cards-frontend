@@ -12,10 +12,14 @@ export default {
         const fragment = new URLSearchParams(window.location.hash);
         const accessToken = fragment.get('access_token');
         const maxAge = fragment.get('expires_in');
-        let cookie = `token=${encodeURIComponent(accessToken)}; max-age=${maxAge}`
-        this.$root.token = accessToken
+        let cookie = `token=${encodeURIComponent(accessToken)}; max-age=${maxAge}; `
         document.cookie = cookie
-        window.location
+
+        fetch('/api/user/create/me', this.$root.getRequestOptions('POST', {
+            sets: []
+        }))
+
+        window.location = decodeURIComponent(fragment.get('state') || '%2F')
     }
 }
 </script>

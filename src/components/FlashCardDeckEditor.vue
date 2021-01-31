@@ -1,6 +1,7 @@
 <!-- FIRST STEP in creating a deck -->
 <template>
     <div class="deck-editor">
+        
         <b-field label="Set Name"
             :type='nameType'
             label-position="on-border"
@@ -26,8 +27,8 @@ export default {
     },
     data() {
         return {
-            nameType: 'is-info',
-            descriptionType: 'is-info',
+            nameType: 'is-primary',
+            descriptionType: 'is-primary',
         }
     },
     methods: {

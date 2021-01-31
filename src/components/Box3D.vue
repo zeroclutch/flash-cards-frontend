@@ -22,4 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.box {
+    padding: 0;
+}
 </style>

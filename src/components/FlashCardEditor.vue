@@ -1,7 +1,7 @@
 <!-- SECOND STEP in creating a deck -->
 <template>
     <div class="card-editor">
-        <h6 class="is-title is-6">Add flashcards</h6>
+        <h6 class="title is-6">Add flashcards</h6>
         <b-field label="Flashcard Front"
             :type='frontType'
             label-position="on-border"
@@ -15,27 +15,29 @@
             <b-input v-model="currentCard.back" :maxlength="maxLength"></b-input>
         </b-field>
 
-        <b-button type="is-primary" v-on:click="$emit('add', currentCard)">Add Card</b-button>
-        <b-button type="is-primary" inverted v-on:click="submitCards(setInfo)">Continue</b-button>
+        <b-button type="is-primary" v-on:click="$emit('add', currentCard)">Add Card</b-button>&nbsp;
+        <b-button type="is-primary" inverted v-on:click="$emit('submit')">Continue</b-button>
         
         <!-- Current card list -->
         <section class="cards-holder columns is-multiline is-3 is-variable">
-            <div class="flash-card-preview card column is-4" v-bind:key="card.id" v-for="(card, index) in setInfo.cards">
-                <div class="card-content">
-                    <span class="front">{{ card.front }}</span><br>
-                    <span class="back" >{{ card.back }}</span><br>
-                    <span class="back" >{{ card.id }}</span>
-                </div>
-                <footer class="card-footer">
-                    <a v-on:click="$emit('edit', index)" class="card-footer-item"><b-icon type="is-primary" icon="edit"></b-icon></a>
-                    <a v-on:click="$emit('delete', index)" class="card-footer-item"><b-icon type="is-danger" icon="trash-alt"></b-icon></a>
-                </footer>
+            <div class="preview-wrapper column is-4" v-bind:key="card.id" v-for="(card, index) in setInfo.cards">
+                <box-3-d class="flash-card-preview card">
+                    <div class="card-content">
+                        <span class="front"><b class="has-text-primary">Front: </b> {{ card.front }}</span><br>
+                        <span class="back" ><b class="has-text-primary">Back: </b> {{ card.back }}</span><br>
+                    </div>
+                    <footer class="card-footer">
+                        <a v-on:click="$emit('edit', index)" class="card-footer-item"><b-icon type="is-primary" icon="edit"></b-icon></a>
+                        <a v-on:click="$emit('delete', index)" class="card-footer-item"><b-icon type="is-danger" icon="trash-alt"></b-icon></a>
+                    </footer>
+                </box-3-d>
             </div>
         </section>
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.card-editor {
     .cards-holder {
         margin-top: 2rem;
     }
@@ -43,19 +45,27 @@
     .flash-card-preview {
         padding: 0;
     }
+    .preview-wrapper > * {
+        padding: 0 !important;
+    }
+}
 </style>
 
 <script>
+import Box3D from './Box3D.vue'
 export default {
     name: 'FlashCardEditor',
+    components: {
+        Box3D
+    },
     props: {
         setInfo: Object,
         cardIndex: Number,
     },
     data() {
         return {
-            frontType: 'is-info',
-            backType: 'is-info',
+            frontType: 'is-primary',
+            backType: 'is-primary',
             maxLength: 200
         }
     },

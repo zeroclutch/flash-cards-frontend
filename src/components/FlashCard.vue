@@ -6,7 +6,7 @@
                 <b-skeleton size="is-large" :active="loading"></b-skeleton>
             </KinesisElement>
             <KinesisElement class="card-footer" :strength="10" type="depth">
-                <span class="tag is-medium is-primary">
+                <span class="tag is-medium is-primary-light">
                 {{ (side || '').toUpperCase() }}
                 </span>
             </KinesisElement>
@@ -71,6 +71,9 @@ export default {
     bottom: calc(0% + 1rem);
     font-size: 0.75rem;
     text-align: right;
+    span {
+        display: inline;
+    }
 }
 
 .hoverable {

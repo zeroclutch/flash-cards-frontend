@@ -53,24 +53,30 @@
                 </h1>
               </div>
               <div class="column columns is-12 content">
-                <div class="column is-4">
+                <a href="https://doi.org/10.1037/a0019902" class="column is-4">
                   <box-3-d :strength="20" class="content">
-                    <h4 class="title is-4">Person 1</h4>
-                    <p class="paragraph">Flash cards are cool!</p>
+                    <div class="content-wrapper">
+                    <h4 class="title is-4">Butler, 2010</h4>
+                    <p class="paragraph">Repeated testing produces superior transfer of learning relative to repeated studying.</p>
+                    </div>
                   </box-3-d>
-                </div>
-                <div class="column is-4">
+                </a>
+                <a href="https://doi.org/10.1111%2Fj.1467-9280.2009.02325.x" class="column is-4">
                   <box-3-d :strength="20" class="content">
-                    <h4 class="title is-4">Person 2</h4>
-                    <p class="paragraph">Yes, they really are!</p>
+                    <div class="content-wrapper">
+                    <h4 class="title is-4">Carpenter et. al., 2012</h4>
+                    <p class="paragraph">Using spacing to enhance diverse forms of learning: Review of recent research and implications for instruction. </p>
+                    </div>
                   </box-3-d>
-                </div>
-                <div class="column is-4">
-                  <box-3-d :strength="20" class="content">
-                    <h4 class="title is-4">Person 3</h4>
-                    <p class="paragraph">I agree!</p>
+                </a>
+                <a class="column is-4" href="https://doi.org/10.1111%2Fj.1467-9280.2009.02325.x">
+                  <box-3-d  :strength="20" class="content">
+                    <div class="content-wrapper">
+                    <h4 class="title is-4">McDaniel et. al., 2009</h4>
+                    <p class="paragraph">The read-recite-review study strategy: Effective and portable.</p>
+                    </div>
                   </box-3-d>
-                </div>
+                </a>
               </div>
             </section>
           </div>
@@ -101,6 +107,9 @@
     top: -25rem;
     margin: 0 auto;
     z-index: 2;
+    .content-wrapper { 
+      padding: 20px;
+    }
   }
 
   .footer {
@@ -128,7 +137,6 @@
     font-size: 24px;
     color: $primary-dark;
   }
-
 </style>
 
 <script>

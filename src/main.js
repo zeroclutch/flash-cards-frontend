@@ -25,9 +25,13 @@ new Vue({
   router,
   data() {
     return {
+      authToken: null
     }
   },
   methods: {
+    logout() {
+      document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    },
     isLoggedIn() {
       return this.token != undefined && this.token != 'null'
     },
@@ -36,8 +40,8 @@ new Vue({
         method,
         body: JSON.stringify(body),
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': this.token
+          'content-type': 'application/json',
+          'authorization': this.token
         },
       }
       console.log(options)
@@ -49,7 +53,7 @@ new Vue({
       let row = document.cookie.split('; ').find(row => row.startsWith('token'))
       if (row) {
         console.log(row)
-          return row.split('=')[1]
+          return decodeURIComponent(row.split('=')[1])
       } else {
           return false
       }

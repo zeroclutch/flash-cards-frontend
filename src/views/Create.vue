@@ -11,12 +11,16 @@
             <b-step-item step="2" :clickable="true" label="Add Cards" icon="plus"></b-step-item>
             <b-step-item step="3" :clickable="false" label="Confirm" icon="check"></b-step-item>
         </b-steps>
+        
+        <div class="title-holder title has-text-primary-dark">
+          Creating <span class="has-text-primary">{{ setInfo.name }}</span>
+        </div>
 
         <FlashCardDeckEditor v-on:continue="deckEditFinished" v-if="activeStep == 0" :set-info="setInfo"/>
         <FlashCardEditor v-on:delete="deleteCard"  v-on:edit="editCard" v-on:add="addCard" v-on:submit="cardsEditFinished" :cardIndex="cardIndex" v-else-if="activeStep == 1" :set-info="setInfo"/>
-        <flash-card-confirm v-else-if="activeStep == 2" :set-info="setInfo"/>
         <div class="success" v-else-if="creationSuccess === true">
             <!-- if success, display a nice message and redirect user to profile -->
+            
         </div>
         <div class="error" v-else>
         </div>
@@ -26,23 +30,21 @@
 <script>
 import FlashCardDeckEditor from '../components/FlashCardDeckEditor.vue'
 import FlashCardEditor from '../components/FlashCardEditor.vue'
-import FlashCardConfirm from '../components/FlashCardConfirm.vue'
 
 export default {
     name: 'Create',
     components: {
         FlashCardDeckEditor,
         FlashCardEditor,
-        FlashCardConfirm
     },
     data() {
         return {
             activeStep: 0,
             setInfo: {
                 cards: [{
-                    front: 'front',
-                    back: 'editable',
-                    id: 'ididid'
+                    front: '',
+                    back: '',
+                    id: '123456'
                 }],
                 name: 'New set',
                 description: ''
@@ -75,6 +77,7 @@ export default {
         },
         cardsEditFinished(setInfo) {
             console.log(setInfo)
+            this.saveSet()
             this.activeStep = 2
         },
         newBlankCard() {
@@ -106,7 +109,10 @@ export default {
             })
         },
         saveSet() {
-            fetch('/api/sets/create/me', this.$root.getRequestParams('POST', this.setInfo))
+            return fetch('/api/sets/create/me', this.$root.getRequestParams('POST', this.setInfo))
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(console.error)
         },
         goToLastCard() {
             if(this.setInfo.cards.length === 0) {
@@ -128,4 +134,5 @@ export default {
         padding: 20px;
         margin: 0 auto;
     }
+
 </style>
