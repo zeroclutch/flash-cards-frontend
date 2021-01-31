@@ -6,7 +6,7 @@
                 <span class="has-text-primary">FLASH<span class="has-text-primary-light">.ME</span> </span>
             </KinesisElement>
             <KinesisElement class="title box-subtitle is-3" :strength="10" type="depth">
-                <span class="has-text-grey">the better way to remember.</span>
+                <span class="has-text-light">the better way to remember.</span>
             </KinesisElement>
             </div>
         </KinesisElement>
@@ -49,7 +49,7 @@ export default {
 .box-subtitle {
     font-size: 0.75rem;
     font-family: $family-primary;
-    color: $primary-invert;
+    color: $light;
 }
 
 .hoverable {

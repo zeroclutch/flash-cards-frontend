@@ -60,10 +60,17 @@ export default {
    justify-content: center;
 }
 
+.box-title {
+    width: 100%;
+    color: $primary-dark;
+}
+
 .card-footer {
+    display:block;
     position: absolute;
     bottom: calc(0% + 1rem);
     font-size: 0.75rem;
+    text-align: right;
 }
 
 .hoverable {

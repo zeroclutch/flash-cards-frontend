@@ -13,8 +13,10 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/vue-fontawesome": "^2.0.2",
     "buefy": "^0.9.4",
+    "konva": "^7.2.2",
     "vue": "^2.6.11",
     "vue-kinesis": "^1.2.3",
+    "vue-konva": "^2.1.6",
     "vue-router": "^3.2.0"
   },
   "devDependencies": {

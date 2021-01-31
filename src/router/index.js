@@ -6,6 +6,7 @@ import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import Study from '../views/Study.vue'
 import Create from '../views/Create.vue'
+import Authorized from '../views/Authorized.vue'
 import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
@@ -34,17 +35,14 @@ const routes = [
     props: true
   },
   {
-    path: '/create', redirect: function (to) {
-      const { path } = to
-      console.log(to)
-      return `${path}/${Math.floor(Math.random() * Date.now()).toString(32)}`
-    }
-  },
-  {
-    path: '/create/:id',
+    path: '/create',
     name: 'Create',
     component: Create,
-    props: true
+  },
+  {
+    path: '/authorized',
+    name: 'Authorized',
+    component: Authorized,
   },
   {
     path: '*',
