@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Profile from '../views/Profile.vue'
 import Study from '../views/Study.vue'
+import Create from '../views/Create.vue'
 import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
@@ -30,6 +31,19 @@ const routes = [
     path: '/study/:set',
     name: 'Study',
     component: Study,
+    props: true
+  },
+  {
+    path: '/create', redirect: function (to) {
+      const { path } = to
+      console.log(to)
+      return `${path}/${Math.floor(Math.random() * Date.now()).toString(32)}`
+    }
+  },
+  {
+    path: '/create/:id',
+    name: 'Create',
+    component: Create,
     props: true
   },
   {

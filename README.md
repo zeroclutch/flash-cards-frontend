@@ -1,4 +1,4 @@
-# flash-cards-frontend
+# FlashME
 
 ## Project setup
 ```

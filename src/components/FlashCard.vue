@@ -18,6 +18,7 @@
 import { KinesisContainer, KinesisElement} from 'vue-kinesis'
 
 export default {
+    name: 'FlashCard',
     props: {
         content: String,
         loading: Boolean,

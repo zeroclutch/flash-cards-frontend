@@ -1,18 +1,26 @@
 
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
+@import "https://fonts.googleapis.com/css2?family=Barlow:wght@900&family=Inter:wght@300;400;500;800&display=swap";
+
+// Fonts
+$family-primary: 'Inter', 'Helvetica Neue', 'Avenir', 'Arial', sans-serif;
+$family-secondary: 'Barlow', 'Inter', 'Helvetica Neue', 'Avenir', 'Arial', sans-serif;
 
 // Primary
-$primary: #52D9E9;
-$primary-light: #fff;
-$primary-dark: findDarkColor($primary);
-$primary-invert: #fff;
+$primary: #03C2AC;
+$primary-light: #8FF2E7;
+$primary-dark: #545452;
+$primary-invert: #C8FFF9;
 
-// Dark
+// Secondary
 $secondary: #79eac1;
 $secondary-light: findLightColor($primary);
 $secondary-dark: findDarkColor($primary);
 $secondary-invert: findColorInvert($primary);
+
+$light: #B4C2C0;
+$light-invert: #545452;
 
 // Dark
 $dark: #23272A;
